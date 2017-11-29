@@ -1,18 +1,24 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import RegionsField from './components/DropDownRegional';
+import RegionsLvl from './components/DropDownRgnSlct';
+import Scenarios from './components/DropDownScnCol';
+import '../node_modules/react-bootstrap/dist/react-bootstrap.min.js';
+import DropdownButton from 'react-bootstrap';
+
 
 class App extends Component {
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+          <h1 className="App-title">Metsämittari</h1>
         </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+          <h3>Aluetaso: </h3>
+          <div className="col-md-4"><RegionsLvl /></div>,
+          <h3>Alue: </h3>
+          <div className="col-md-4"><RegionsField /></div>,
+          <h3>Skenaariot: </h3>
+          <div className="col-md-4"><Scenarios /></div>,
       </div>
     );
   }
