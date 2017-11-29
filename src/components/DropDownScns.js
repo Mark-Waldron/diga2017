@@ -6,7 +6,7 @@ import "react-select/dist/react-select.css";
 
 require("create-react-class");
 
-const REGIONS = [
+const SCNS = [
   { label: "Pohojois-Pohjanmaa", value: "p_pohj" },
   { label: "Keski-Pohjanmaa", value: "k_pohj" },
   { label: "Etelä-Pohjanmaa", value: "e_pohj" },
@@ -15,13 +15,14 @@ const REGIONS = [
   { label: "Lounais-Suomi", value: "l_suom" }
 ];
 
-var RegionsField = createClass({
-  displayName: "Regions",
+var Scenarios = createClass({
+  displayName: "Scenarios",
   propTypes: {
     label: PropTypes.string
   },
   getInitialState() {
     return {
+      stayOpen: false,
       value: []
     };
   },
@@ -29,26 +30,48 @@ var RegionsField = createClass({
     console.log("Valinnat: ", value);
     this.setState({ value });
   },
+  toggleCheckbox(e) {
+    this.setState({
+      [e.target.name]: e.target.checked
+    });
+  },
 
   render() {
-    const { value } = this.state;
-    const options = REGIONS;
+    const { stayOpen, value } = this.state;
+    const options = SCNS;
     return (
       <div className="section">
         <div className="row">
-          <h3>Alue: </h3>
+          <h3>Skenaariot: </h3>
           <div className="col-md-4">
             <Select
+              closeOnSelect={!stayOpen}
+              multi
               onChange={this.handleSelectChange}
               options={options}
-              placeholder="Valitse alue: "
+              placeholder="Valitse Skenaario(t): "
               simpleValue
               value={value}
             />
+
+            <div className="checkbox">
+              <label className="checkbox">
+                <input
+                  type="checkbox"
+                  className="checkbox-control"
+                  name="stayOpen"
+                  checked={stayOpen}
+                  onChange={this.toggleCheckbox}
+                />
+                <span className="checkbox-label">
+                  Pysy avoinna kun skenaario(ita) valittu
+                </span>
+              </label>
+            </div>
           </div>
         </div>
       </div>
     );
   }
 });
-export default RegionsField;
+export default Scenarios;

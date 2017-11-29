@@ -31,13 +31,18 @@ var RegionsLvl = createClass({
     const options = REGIONLVL;
     return (
       <div className="section">
-        <Select
-          onChange={this.handleSelectChange}
-          options={options}
-          placeholder="Valitse aluetaso: "
-          simpleValue
-          value={value}
-        />
+        <div className="row">
+          <h3>Alue: </h3>
+          <div className="col-md-4">
+            <Select
+              onChange={this.handleSelectChange}
+              options={options}
+              placeholder="Valitse aluetaso: "
+              simpleValue
+              value={value}
+            />
+          </div>
+        </div>
       </div>
     );
   }

@@ -6,13 +6,13 @@ import "react-select/dist/react-select.css";
 
 require("create-react-class");
 
-const SCENS = [
+const SCENSCOL = [
   { label: "Maakunnat", value: "maakunt" },
   { label: "Metsänhoitoalueet", value: "metsh" }
 ];
 
-var Scenarios = createClass({
-  displayName: "Scenarios",
+var ScenarioCol = createClass({
+  displayName: "ScenarioCollection",
   propTypes: {
     label: PropTypes.string
   },
@@ -28,18 +28,23 @@ var Scenarios = createClass({
 
   render() {
     const { value } = this.state;
-    const options = SCENS;
+    const options = SCENSCOL;
     return (
       <div className="section">
-        <Select
-          onChange={this.handleSelectChange}
-          options={options}
-          placeholder="Valitse aluetaso: "
-          simpleValue
-          value={value}
-        />
+        <div className="row">
+          <h3>Skenaariokokoelma: </h3>
+          <div className="col-md-4">
+            <Select
+              onChange={this.handleSelectChange}
+              options={options}
+              placeholder="Valitse skenaariokokoelma: "
+              simpleValue
+              value={value}
+            />
+          </div>
+        </div>
       </div>
     );
   }
 });
-export default Scenarios;
+export default ScenarioCol;
